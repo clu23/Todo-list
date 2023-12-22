@@ -2,50 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Asset Management</title>
-    <link type="text/css" rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@400;500;700&display=swap">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/modern-normalize.css">
+    <link type="text/css" rel="stylesheet" href="css/fontawesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/all.min.css">
+    <title>To Do</title>
   </head>
-  <body>
+  <body id="body">
+    <header id="header">
+      <!-- MENU TOGGLE -->
+      <div class="toggle-menu">
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+      </div>
+      
+      <!-- LOGO -->
+      <div class="logo"><i class="fa-solid fa-check-double padding-right"></i><p>ToDo</p></div>
+    </header>
+
     <div class="content">
-      <div class="form-heading">
-        <h1>Add new Todo to this Project</h1>
-      </div>
-      <div class="todos-heading">
-        <h1>Current ToDos in projects</h1>
-      </div>
-      <div class="form">
-        <button class="add-todo-button">&plus;</button>
-        <div id="add-todo-form" style="display:none">
-          <form id="add-todo">
-            <label for="Project">Project</label>
-            <select id="Project", name="Project">
-            <option value="DefaultProject">Default Project</option>
-            <option value="Create-New-Project">Create New Project</option>
-            </select>
-            <label for="Title">Title:</label>
-            <input type="text" id="Title" name="Title">
-            <label for="Description">Description:</label>
-            <input type="text" id="Description" name="Description">
-            <label for="DueDate">Due Date:</label>
-            <input type="date" id="DueDate" name="DueDate">
-            <label for="Priority">Priority:</label>
-            <select id="Priority", name="Priority">
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
-            <label for="Checklist">Checklist Items Added:</label>
-            <ul class="todo-ul"></ul>
-          </form>
-          <input type="text" id="add-to-checklist" name="add-to-checklist" placeholder="Type checklist item here">
-          <button class="add-to-checklist">Add Item to Checklist</button>
-          <br>
-          <button type="submit" class="submit-button">Submit ToDo</button>
-          <button type="reset" class="reset-button">Reset Form</button>
-        </div>
-      </div>
-      <div class="projects">
-      </div>
+     
     </div>
     <script src="main.js"></script>
   </body>

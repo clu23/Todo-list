@@ -1,0 +1,40 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+ /* General */
+
+#body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #757575;
+}
+
+
+/* Header */
+#header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background: linear-gradient(90deg, #00B3BB 0%, #00E6AA 100%);
+  font-family: 'Lato', sans-serif;
+}
+
+.logo {
+  padding: 20px 40px;
+  font-size: 25px;
+  color: #FFFFFF;
+  display: flex;
+  
+}
+
+.logo p{
+  margin-left: 8px;
+}
+
+
+
+  
