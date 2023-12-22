@@ -21,9 +21,54 @@
         <div class="burger-line"></div>
       </div>
       
-      <!-- LOGO -->
+      <!-- Logo -->
       <div class="logo"><i class="fa-solid fa-check-double padding-right"></i><p>ToDo</p></div>
     </header>
+
+    <!-- Navbar -->
+    <nav id="sidebar-menu">
+
+      <div class="menu-links">
+        <a href="#" class="link menu-link select selected-link" data-link-index="0" data-title="all">
+          <i class="fa-solid fa-calendar-days"  data-link-index="0" data-title="all" data-icon="fa-calendar-days"></i>
+          <p class="menu-link-text select" data-link-index="0" data-title="all">All</p>
+        </a>
+        <a href="#" class="link menu-link select" data-link-index="1" data-title="today">
+          <i class="fa-solid fa-calendar-day" data-link-index="1" data-title="today" data-icon="fa-calendar-day"></i>
+          <p class="menu-link-text select" data-link-index="1" data-title="today">Today</p>
+        </a>
+        <a href="#" class="link menu-link select" data-link-index="2" data-title="week">
+          <i class="fa-solid fa-calendar-week" data-link-index="2" data-title="week" data-icon="fa-calendar-week"></i>
+          <p class="menu-link-text select" data-link-index="2" data-title="week">Week</p>
+        </a>
+        </a>
+        <a href="#" class="link menu-link select" data-link-index="4" data-title="completed">
+          <i class="fa-solid fa-calendar-check" data-link-index="4" data-title="completed" data-icon="fa-calendar-check"></i>
+          <p class="menu-link-text select" data-link-index="4" data-title="completed">Completed</p>
+        </a>
+      </div>
+  
+      <!-- Projects -->
+      <div id="nav-projects">
+        <div class="nav-projects-title">
+          <p>Projects (<span class="projects-count"></span>)</p>
+          <i class="fal fa-plus-circle add-project hover-element tooltip-icon">
+            <span class="add-project tooltip-text">Add New Project</span>
+          </i>
+        </div>
+        <div class="projects-links-div">
+          <!-- Projects list here -->
+        </div>
+      </div>
+  
+      <!-- Footer -->
+      <footer id="footer">
+        <p class="crafted-by"> ☽ Created by
+          <a href="https://github.com/clu23" target="_blank" class="footer-link">clu23</a> |
+          <a href="https://github.com/clu23/Todo-list" target="_blank" class="footer-link">Source</a> ☾
+        </p>
+      </footer>
+    </nav>
 
     <div class="content">
      
