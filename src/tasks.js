@@ -30,6 +30,35 @@ export const tasks = (()=>{
         dom.getTasks('project', projectIndex);
     }
 
+    function deleteTask(projectIndex, taskIndex) {
+        if (projectIndex > -1) {
+          projects.projectsList[projectIndex].tasks.splice(taskIndex, 1);
+          dom.getTasks('all');
+        }
+    }
+
+    function toggleTaskCompletion(projectIndex, taskIndex, selectedLink) {
+        let clickedLink;
     
+        if (projects.projectsList[projectIndex].tasks[taskIndex].completed === false) {
+          projects.projectsList[projectIndex].tasks[taskIndex].completed = true;
+        } else {
+          projects.projectsList[projectIndex].tasks[taskIndex].completed = false;
+        }
+    
+        if (selectedLink.classList.contains('project')) {
+          clickedLink = 'project';
+        } else {
+          clickedLink = selectedLink.getAttribute('data-title');
+        }
+        dom.getTasks(clickedLink, projectIndex);
+    }
+
+    return {
+        addTask,
+        editTask,
+        deleteTask,
+        toggleTaskCompletion,
+    };  
 
 })();
