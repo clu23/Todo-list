@@ -100,6 +100,161 @@
       </div>
     </main>
 
+    <!-- Modal -->
+  <div id="modal" class="close hide">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-main-title"></h2>
+        <i class="fa-solid fa-xmark close-modal close"></i>
+      </div>
+      <div class="modal-content">
+
+        <!-- Delete Project -->
+        <p class="project-deletion-text hide">Are you sure?<br><br>
+        Project <span class="project-deletion-title"></span> will be deleted!</p>
+
+        <!-- Delete Task -->
+        <p class="task-deletion-text hide">Are you sure?<br><br>
+          Task <span class="task-deletion-title"></span> will be deleted!</p>
+
+        <!-- Task info content -->
+        <div class="info-div hide">
+
+          <!-- Title -->
+          <div class="task-title-div">
+            <p class="info-title padding-right">Title:</p>
+            <p class="info-task-title"></p>
+          </div>
+
+          <!-- Description -->
+          <div class="task-description-div">
+            <p class="info-description padding-right">Description:</p>
+            <p class="info-task-description"></p>
+          </div>
+
+          <!-- Due Date -->
+          <div class="task-due-date-div">
+            <p class="info-due-date padding-right">Due date:</p>
+            <p class="info-task-due-date"></p>
+          </div>
+
+          <!-- Priority -->
+          <div class="task-priority-div">
+            <p class="info-priority padding-right">Priority:</p>
+            <p class="info-task-priority"></p>
+          </div>
+
+          <!-- Project -->
+          <div class="task-project-div">
+            <p class="info-project padding-right">Project:</p>
+            <p class="info-task-project"></p>
+          </div>
+
+        </div>
+
+        <form id="form" name="form" method="POST">
+
+          <!-- Modal Title Input -->
+          <div>
+            <label id="modal-title-label" for="modal-title">Title<span class="title-star">*</span></label>
+            <input type="text" id="modal-title" name="modal-title" autocomplete="off">
+            <p class="modal-title-error hide">Please fill out this field.</p>
+          </div>
+
+          <!-- Radio buttons -->
+          <div class="radio-form show">
+            <p>Icon</p>
+            <div class="project-icons">
+              <label class="radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="flower-daffodil" class="icon" name="projectFormIcon" value="fa-flower-daffodil" checked>
+                  <span class="radio-control"><i class="fal fa-flower-daffodil fa-fw"></i></span>
+                </span>
+              </label>
+              <label class="radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="book" class="icon" name="projectFormIcon" value="fa-book">
+                  <span class="radio-control"><i class="fal fa-book fa-fw"></i></span>
+                </span>
+              </label>
+              <label class="radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="tools" class="icon" name="projectFormIcon" value="fa-tools">
+                  <span class="radio-control"><i class="fal fa-tools fa-fw"></i></span>
+                </span>
+              </label>
+              <label class="radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="volleyball-ball" class="icon" name="projectFormIcon" value="fa-volleyball-ball">
+                  <span class="radio-control"><i class="fal fa-volleyball-ball fa-fw"></i></span>
+                </span>
+              </label>
+              <label class=" radio radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="sack-dollar" class="icon" name="projectFormIcon" value="fa-sack-dollar">
+                  <span class="radio-control"><i class="fal fa-sack-dollar fa-fw"></i></span>
+                </span>
+              </label>
+              <label class="radio radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="pizza-slice" class="icon" name="projectFormIcon" value="fa-pizza-slice">
+                  <span class="radio-control"><i class="fal fa-pizza-slice fa-fw"></i></span>
+                </span>
+              </label>
+              <label class="radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="backpack" class="icon" name="projectFormIcon" value="fa-backpack">
+                  <span class="radio-control"><i class="fal fa-backpack fa-fw"></i></span>
+                </span>
+              </label>
+              <label class="radio-before">
+                <span class="radio-input">
+                  <input type="radio" id="gift" class="icon" name="projectFormIcon" value="fa-gift">
+                  <span class="radio-control"><i class="fal fa-gift fa-fw"></i></span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Modal content for a Task -->
+          <div class="modal-tasks-div hide">
+
+            <!-- Task Description -->
+            <div class="task-description-area">
+              <label for="task-description">Description</label>
+              <textarea class="task-description" rows="3" cols="36"></textarea>
+            </div>
+
+            <!-- Task Due Date -->
+            <div class="task-due-date">
+              <label for="dueDate">Due Date</label>
+              <input type="date" id="dueDate" name="dueDate">
+            </div>
+
+            <!-- Task Priority -->
+            <div>
+              <label for="priority">Priority</label>
+              <select class="task-priority" name="priority">
+                <option value="" disabled selected>How important is this task?</option>
+                <option value="low">😴 Not important at all..</option>
+                <option value="medium">😅 A bit important</option>
+                <option value="high">😲 Super important!</option>
+              </select>
+            </div>
+
+          </div>
+        </form>
+
+        <!-- Modal Buttons -->
+        <div class="modal-buttons">
+          <button type="button" class="cancel-modal close">Cancel</button>
+          <button type="button" class="modal-task-button confirm-modal"></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
     <script src="main.js"></script>
   </body>
 </html>

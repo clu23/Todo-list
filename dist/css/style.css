@@ -1,4 +1,17 @@
-
+/* COLORS PALETTE */
+:root {
+  --aqua: #00B3BB;
+  --light-aqua: #00E6AA;
+  --dark-aqua: #0E9AA1;
+  --grey: #E6E6E6;
+  --light-grey: #F7F7F7;
+  --dark-grey: #757575;
+  --white: #FFFFFF;
+  --green: #61B874;
+  --yellow: #E6DB7B;
+  --red: #E67B7B;
+  --dark-red: #C46161;
+}
 
 
  /* General */
@@ -268,7 +281,7 @@ select:focus {
   transition: .3s;
 }
 
-/* TASK INFO */
+/* Task Info */
 .task-title-div,
 .task-description-div,
 .task-due-date-div,
@@ -315,6 +328,26 @@ select:focus {
   font-size: 17px;
 }
 
+/* Footer */
+#footer {
+  margin: 20px 0 40px 0;
+  text-align: center;
+  border-top: 1px solid #757575;
+}
+.crafted-by {
+  margin: 10px 0;
+  font-size: 15px;
+}
+.footer-link {
+  text-decoration: none;
+  color: #00B3BB;
+  transition: .3s;
+}
+.footer-link:hover {
+  color: #0E9AA1;
+  transition: .3s;
+}
+
 /* Tooltip */
 
 .tooltip-icon {
@@ -336,4 +369,179 @@ select:focus {
   border-radius: 5px;
   opacity: 0;
   transition: opacity .3s;
+}
+
+
+/* MODAL STYLES */
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+#modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: .2s;
+  margin: 0 auto;
+  z-index: 2;
+}
+.modal-card {
+  position: relative;
+  margin: 15% auto;
+  max-width: 400px;
+  border-radius: 5px;
+  box-shadow: rgba(46, 46, 46, 0.2) 0px 2px 8px 0px;
+  animation: fadeIn .2s;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  background: #00B3BB;
+  color: var(--white);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.modal-header h2 {
+  margin: 0;
+  padding: 20px;
+}
+.fa-times {
+  height: 20px;
+}
+.close-modal {
+  margin: 10px 20px;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 20px;
+  background-color: #FFFFFF;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #E6E6E6;
+}
+.cancel-modal {
+  background-color: #FFFFFF;
+  color: #757575;
+  border: 1px solid #E6E6E6;
+  border-radius: 3px;
+  transition: .3s;
+}
+.cancel-modal:hover {
+  color: #0E9AA1;
+  border-color: #0E9AA1;
+}
+.confirm-modal {
+  margin-left: 10px;
+  background-color: #00E6AA;
+  color: #FFFFFF;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  transition: .3s;
+}
+.confirm-modal:hover {
+  background-color: #0E9AA1;
+}
+
+/* MODAL FORM INPUT STYLES */
+#form input,
+.task-description,
+.task-priority {
+  width: 100%;
+  margin: 5px 0 20px 0;
+  padding: 10px;
+  background-color: var(--white);
+  color: var(--dark-grey);
+  border: 1px solid var(--grey);
+  border-radius: 3px;
+  transition: .3s;
+}
+#form input:focus,
+.task-description:focus,
+.task-priority:focus {
+  border-color: var(--aqua);
+  transition: .3s;
+}
+.title-star {
+  color: var(--red);
+}
+.modal-title-error {
+  margin: -15px 0 20px 0;
+  font-size: 13px;
+  color: var(--red);
+}
+
+/* MODAL TO DELETE A PROJECT */
+.deletion-modal-header {
+  background: linear-gradient(90deg, var(--dark-red) 0%, var(--red) 100%);
+}
+.project-deletion-title,
+.task-deletion-title {
+  font-weight: 700;
+}
+.cancel-deletion:hover {
+  color: var(--dark-grey);
+  border: 1px solid var(--dark-grey);
+}
+.confirm-deletion {
+  background-color: var(--red);
+}
+.confirm-deletion:hover {
+  background-color: var(--dark-red);
+}
+
+/* PROJECTS MODAL RADIO BUTTONS - ICONS */
+.project-icons {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(7, -webkit-min-content);
+  -ms-grid-columns: -webkit-min-content 10px -webkit-min-content 10px -webkit-min-content 10px -webkit-min-content 10px -webkit-min-content 10px -webkit-min-content 10px -webkit-min-content;
+  -ms-grid-columns: min-content 10px min-content 10px min-content 10px min-content 10px min-content 10px min-content 10px min-content;
+  grid-template-columns: repeat(8, min-content);
+  grid-gap: 4px;
+  margin: 5px 0;
+}
+.project-icons input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.project-icons i {
+  width: 40px;
+}
+.radio-control {
+  display: inline-block;
+  width: 41px;
+  padding: 5px 0;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: .1s;
+}
+.radio-control:hover {
+  border-color: var(--dark-aqua);
+  color: var(--dark-aqua);
+  transition: .1s;
+}
+.project-icons input:focus + .radio-control,
+.radio-before input:checked + .radio-control {
+  color: var(--dark-aqua);
+  border: 1px solid var(--dark-aqua);
 }
