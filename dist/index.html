@@ -52,7 +52,7 @@
       <div id="nav-projects">
         <div class="nav-projects-title">
           <p>Projects (<span class="projects-count"></span>)</p>
-          <i class="fa-solid fa-circle-plus">
+          <i class="fa-solid fa-circle-plus hover-element tooltip-icon">
             <span class="add-project tooltip-text">Add New Project</span>
           </i>
         </div>
@@ -70,9 +70,36 @@
       </footer>
     </nav>
 
-    <div class="content">
-     
-    </div>
+     <!-- Main Content -->
+    <main id="main">
+
+      <!-- Title -->
+      <div class="main-title-div">
+        <i class="main-title-icon"></i>
+        <h1 class="main-title-text"></h1>
+      </div>
+
+      <!-- Tasks -->
+      <div class="tasks-div">
+
+        <!-- Tasks Title -->
+        <div class="tasks-title-div">
+          <div class="tasks-title">
+            <p>Tasks (<span class="tasks-count"></span>)</p>
+          </div>
+          <i class="fa-circle-plus add-task task-icon hover-element tooltip-icon hide">
+            <span class="add-task tooltip-text">Add New Task</span>
+          </i>
+        </div>
+
+        <!-- Tasks List -->
+        <div class="tasks-list">
+          <!-- Tasks here -->
+        </div>
+
+      </div>
+    </main>
+
     <script src="main.js"></script>
   </body>
 </html>
