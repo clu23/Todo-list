@@ -62,7 +62,7 @@ export const dom = (() => {
         }
       }
 
-    // Main content title
+    // Main content title, this function shows the main title of the selected item on the navbar
     function showMainTitle(index) {
       const allMenuIcons = document.querySelectorAll('.menu-link-icon');
       const menuIcon = allMenuIcons[index].getAttribute('data-icon');
@@ -115,12 +115,155 @@ export const dom = (() => {
       }
     }
 
+    // This function is used to keep track on tasks information
+    function watchTaskInfo(projectIndex, taskIndex) {
+      const infoTaskTitle = document.querySelector('.info-task-title');
+      const infoTaskDescription = document.querySelector('.info-task-description');
+      const infoTaskDueDate = document.querySelector('.info-task-due-date');
+      const infoTaskPriority = document.querySelector('.info-task-priority');
+      const infoTaskProject = document.querySelector('.info-task-project');
+  
+      // Task title
+      infoTaskTitle.textContent =
+        projects.projectsList[projectIndex].tasks[taskIndex].title;
+  
+      // Task description
+      infoTaskDescription.textContent =
+        projects.projectsList[projectIndex].tasks[taskIndex].description;
+  
+      // Task Due date
+      infoTaskDueDate.textContent =
+        projects.projectsList[projectIndex].tasks[taskIndex].date;
+  
+      // Task Priority 
+      if (
+        projects.projectsList[projectIndex].tasks[taskIndex].priority === 'low'
+      ) {
+        infoTaskPriority.textContent = 'I can do it later or never at all.. 😴';
+      } else if (
+        projects.projectsList[projectIndex].tasks[taskIndex].priority === 'medium'
+      ) {
+        infoTaskPriority.textContent = 'I stay somewhere between relaxation and focus 😅';
+      } else if (
+        projects.projectsList[projectIndex].tasks[taskIndex].priority === 'high'
+      ) {
+        infoTaskPriority.textContent = 'I must do it - sooner or later! 😲';
+      } else {
+        infoTaskPriority.textContent = '';
+      }
+  
+      // Task project
+      infoTaskProject.textContent = projects.projectsList[projectIndex].title;
+    }
+
+    //This function is used to manipulate the modal windows
+    function manipulateModal(modalState, modalTask, modalAction, projectIndex, taskIndex) {
+      const modalHeader = modal.querySelector('.modal-header');
+      const modalMainTitle = modal.querySelector('.modal-main-title');
+      const modalTaskButton = modal.querySelector('.modal-task-button');
+      const projectDeletionText = modal.querySelector('.project-deletion-text');
+      const taskDeletionText = modal.querySelector('.task-deletion-text');
+      const taskInfoDiv = modal.querySelector('.info-div');
+      const confirmButton = modal.querySelector('.confirm-modal');
+      const cancelButton = modal.querySelector('.cancel-modal');
+  
+      modalHeader.classList.remove('deletion-modal-header');
+      form.reset();
+      form.classList.remove('hide');
+      taskInfoDiv.classList.add('hide');
+      modalTitleError.classList.add('hide');
+      projectDeletionText.classList.add('hide');
+      taskDeletionText.classList.add('hide');
+      cancelButton.classList.remove('cancel-deletion');
+      confirmButton.classList.remove('confirm-deletion', 'hide');
+  
+      if (modalState === 'show') {
+        const modalIconsDiv = modal.querySelector('.radio-form');
+        const modalTasksDiv = modal.querySelector('.modal-tasks-div');
+  
+        modal.classList.remove('hide');
+        modalMainTitle.textContent = modalTask;
+        modalTaskButton.textContent = modalAction;
+        modalIconsDiv.classList.remove('hide');
+        modalIconsDiv.classList.add('show');
+        modalTasksDiv.classList.add('hide');
+  
+        // IF MODAL IS FOR EDITING PROJECT
+        if (modalTask === 'Edit Project') {
+          const allProjectIcons = modal.querySelectorAll('.icon');
+          const projectIcon = projects.projectsList[projectIndex].icon;
+  
+          // SHOW EDITABLE PROJECT TITLE
+          modalTitle.value = projects.projectsList[projectIndex].title;
+  
+          // SELECT EDITABLE PROJECT ICON
+          for (let i = 0; i < allProjectIcons.length; i += 1) {
+            if (allProjectIcons[i].value === projectIcon) {
+              allProjectIcons[i].checked = true;
+            }
+          }
+  
+        // IF MODAL IS FOR ADDING OR EDITING TASK
+        } else if (modalTask === 'Add Task'||
+            modalTask === 'Edit Task'
+        ) {
+          modalIconsDiv.classList.remove('show');
+          modalIconsDiv.classList.add('hide');
+          modalTasksDiv.classList.remove('hide');
+  
+          if (modalTask === 'Edit Task') {
+            modalTitle.value = projects.projectsList[projectIndex].tasks[taskIndex].title;
+            taskDescription.value = projects.projectsList[projectIndex].tasks[taskIndex].description;
+            taskDueDate.value = projects.projectsList[projectIndex].tasks[taskIndex].date;
+            taskPrioritySelection.value = projects.projectsList[projectIndex].tasks[taskIndex].priority;
+          }
+  
+          // IF MODAL IS FOR WATCHING TASK INFO
+        } else if (modalTask === 'Task Info') {
+          form.classList.add('hide');
+          confirmButton.classList.add('hide');
+          taskInfoDiv.classList.remove('hide');
+          watchTaskInfo(projectIndex, taskIndex);
+        }
+      }
+  
+      // DELETION MODAL CONTENT
+      if (modalAction === 'Delete') {
+        modalHeader.classList.add('deletion-modal-header');
+        form.classList.add('hide');
+        cancelButton.classList.add('cancel-deletion');
+        confirmButton.classList.add('confirm-deletion');
+  
+        // PROJECT DELETION
+        if (modalTask === 'Delete Project') {
+          const projectDeletionTitle = document.querySelector('.project-deletion-title');
+  
+          projectDeletionText.classList.remove('hide');
+          projectDeletionTitle.textContent = projects.projectsList[projectIndex].title;
+  
+          // TASK DELETION
+        } else if (modalTask === 'Delete Task') {
+          const taskDeletionTitle = document.querySelector('.task-deletion-title');
+  
+          taskDeletionText.classList.remove('hide');
+          taskDeletionTitle.textContent =
+            projects.projectsList[projectIndex].tasks[taskIndex].title;
+        }
+      }
+  
+      // TO CLOSE THE MODAL
+      if (modalState === 'close') {
+        modal.classList.add('hide');
+      }
+    }
+
 
       return {
         responsiveMenu,
         toggleMenu,
         showMainTitle,
         changeMainTitle,
+        manipulateModal,
       };
 
 })();
