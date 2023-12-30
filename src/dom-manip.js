@@ -1,5 +1,6 @@
 import { format, parseISO, differenceInDays } from 'date-fns';
 import projects from './projects';
+import tasks from './tasks';
 
 export const dom = (() => {
     const toggleMenuIcon = document.querySelector('.toggle-menu');
@@ -409,6 +410,94 @@ export const dom = (() => {
       manipulateModal('close');
     }
 
+    //This function allows to get a specific task
+    function getTasks(menuTitle, projectIndex) {
+      let projectIndexStart;
+      let projectIndexEnd;
+  
+      // Save projects with tasks to local storage
+      localStorage.setItem('projects', JSON.stringify(projects.projectsList));
+  
+      // If clicked on project link
+      if (menuTitle === 'project') {
+        projectIndexStart = projectIndex;
+        projectIndexEnd = projectIndex + 1;
+  
+        // If project does not have any task 
+        if (projects.projectsList[projectIndex].tasks.length === 0) {
+          tasksCount.textContent = 0;
+        }
+  
+        // If clicked on menu link 
+      } else {
+        projectIndexStart = 0;
+        projectIndexEnd = projects.projectsList.length;
+      }
+      showTasks(menuTitle, projectIndexStart, projectIndexEnd);
+    }
+
+
+    function selectLink(target, index, action) {
+      const allLinks = document.querySelectorAll('.link');
+      const allProjectsLinks = document.querySelectorAll('.project-link');
+      const menuTitle = target.getAttribute('data-title');
+  
+      addTaskButton.classList.add('hide'); // By default 'Add Task' button is hidden
+  
+      allLinks.forEach((link) => {
+        link.classList.remove('selected-link');
+      });
+  
+      // If clicked directly on the link (Both - Menu or project)
+      if (target.classList.contains('link')) {
+        target.classList.add('selected-link');
+  
+        // If was clicked to edit project link 
+        if (action === 'edit') {
+          allProjectsLinks[index].classList.add('selected-link'); // Keep project visually selected after editing
+        }
+  
+        // If clicked on menu link icon or text
+      } else if (
+        target.classList.contains('menu-link-icon') ||
+        target.classList.contains('menu-link-text')
+      ) {
+        target.parentElement.classList.add('selected-link');
+      }
+  
+      // If clicked somewhere on project link 
+      if (target.classList.contains('project')) {
+        addTaskButton.classList.remove('hide'); // Show button to add task for selected project
+        getTasks('project', index);
+  
+        // If clicked on  project icon or text or edit/delete icons
+        if (
+          target.classList.contains('project-icon') ||
+          target.classList.contains('project-text') ||
+          target.classList.contains('edit-project') ||
+          target.classList.contains('delete-project')
+        ) {
+          target.parentElement.parentElement.classList.add('selected-link');
+  
+          // If clicked on project elements divs 
+        } else if (
+          target.classList.contains('project-icon-and-text-div') ||
+          target.classList.contains('project-default-icons-div')
+        ) {
+          target.parentElement.classList.add('selected-link');
+        }
+      }
+  
+      // If clicked somewhere on menu link 
+      if (
+        target.classList.contains('menu-link') ||
+        target.classList.contains('menu-link-icon') ||
+        target.classList.contains('menu-link-text')
+      ) {
+        getTasks(menuTitle);
+      }
+    }
+
 
       return {
         responsiveMenu,
@@ -417,6 +506,8 @@ export const dom = (() => {
         changeMainTitle,
         manipulateModal,
         showTasks,
+        getTasks,
+        selectLink,
       };
 
 })();
