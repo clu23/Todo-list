@@ -288,7 +288,7 @@ export const dom = (() => {
               continue; // If task isn't for today - skip it
             }
   
-            // If clicked on Menu link "Week" CLICKED ON MENU LINK 'WEEK'
+            // If clicked on Menu link "Week"
           } else if (menuTitle === 'week') {
             const dateOfToday = parseISO(todayDate);
             const dateOfTask = parseISO(projects.projectsList[i].tasks[j].date)
