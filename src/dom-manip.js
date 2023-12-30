@@ -1,6 +1,6 @@
 import { format, parseISO, differenceInDays } from 'date-fns';
 import projects from './projects';
-import tasks from './tasks';
+import {tasks} from './tasks';
 
 export const dom = (() => {
     const toggleMenuIcon = document.querySelector('.toggle-menu');
@@ -499,6 +499,214 @@ export const dom = (() => {
     }
 
 
+    //This function allows to check if information provided by the user to the modal window are correct
+    function validateModal(modalAction, projectIndex, taskIndex, clickedLink) {
+      const { projectFormIcon } = document.forms.form;
+      const projectDomIcon = projectFormIcon.value;
+      const projectIconsDiv = modal.querySelector('.radio-form');
+      const modalTitleText = modalTitle.value;
+      const projectDeletionText = document.querySelector('.project-deletion-text');
+      const menuLinkAll = document.querySelector('.link:first-child');
+      let taskPriority;
+  
+      // Check for modal title error if modal form is shown 
+      if (!form.classList.contains('hide') &&
+          modalTitleText === ''
+      ) {
+        modalTitleError.classList.remove('hide');
+        modalTitleError.classList.add('show');
+  
+        // Add project to array 
+      } else if (
+        modalAction === 'add' &&
+        projectIconsDiv.classList.contains('show')
+      ) {
+        projects.addProject(projectDomIcon, modalTitleText);
+        mainContent.classList.remove('inactive-main');
+  
+        // Keep newly added project visually selected 
+        const lastProject = projectsLinksDiv.lastChild;
+        const lastProjectIndex = projectsLinksDiv.lastChild.getAttribute('data-link-index');
+  
+        selectLink(lastProject, lastProjectIndex);
+        changeMainTitle(lastProject, lastProjectIndex);
+  
+      } // Edit project in projects array 
+        else if (modalAction === 'edit' &&
+          projectIconsDiv.classList.contains('show')
+      ) {
+        const allProjectsLinks = document.querySelectorAll('.project-link');
+        const editedProject = allProjectsLinks[projectIndex];
+  
+        projects.editProject(projectDomIcon, modalTitleText, projectIndex, clickedLink);
+        changeMainTitle(editedProject, projectIndex);
+  
+        // Delete project from projects array
+      } else if (
+        modalAction === 'delete' &&
+        !projectDeletionText.classList.contains('hide')
+      ) {
+        projects.deleteProject(projectIndex);
+        menuLinkAll.classList.add('selected-link');
+        addTaskButton.classList.add('hide');
+  
+        // Add task to array
+      } else if (
+        modalAction === 'add' &&
+        projectIconsDiv.classList.contains('hide')
+      ) {
+  
+        // Check task priority
+        if (taskPrioritySelection.value === 'low') {
+          taskPriority = 'low';
+        } else if (taskPrioritySelection.value === 'medium') {
+          taskPriority = 'medium';
+        } else if (taskPrioritySelection.value === 'high') {
+          taskPriority = 'high';
+        } else {
+          taskPriority = '';
+        }
+  
+        tasks.addTask(
+          modalTitleText,
+          taskDescription.value,
+          taskDueDate.value,
+          taskPriority,
+          projectIndex
+        );
+  
+        // If task is going to be edited or deleted 
+      } else if (modalAction === 'edit' ||
+        modalAction === 'delete') {
+        let menuTitle;
+  
+        // If task is going to be edited or deleted from clicked menu link 
+        if (clickedLink.classList.contains('menu-link')) {
+          menuTitle = clickedLink.getAttribute('data-title');
+  
+          // If task is going to be edited or deleted from clicked project link 
+        } else if (clickedLink.classList.contains('project-link')) {
+          menuTitle = 'project';
+        }
+  
+        // Edit task in tasks array
+        if (modalAction === 'edit') {
+          const taskNewTitle = modalTitle.value;
+          const taskNewDescription = taskDescription.value;
+          const taskNewDate = taskDueDate.value;
+          const taskNewPriority = taskPrioritySelection.value;
+  
+          tasks.editTask(
+            taskNewTitle,
+            taskNewDescription,
+            taskNewDate,
+            taskNewPriority,
+            projectIndex,
+            taskIndex
+          );
+  
+          // Delete task from tasks array
+        } else if (modalAction === 'delete') {
+          tasks.deleteTask(projectIndex, taskIndex);
+        }
+        getTasks(menuTitle, projectIndex);
+      }
+    }
+
+
+    //This function allows to display the projects in the navbar
+    function showProjects() {
+      const projectsCount = document.querySelector('.projects-count');
+  
+      // Save projects to local storage
+      localStorage.setItem('projects', JSON.stringify(projects.projectsList));
+  
+      // Show number of projects 
+      projectsCount.textContent = projects.projectsList.length;
+      projectsLinksDiv.textContent = '';
+  
+      for (let i = 0; i < projects.projectsList.length; i += 1) {
+        const projectLink = document.createElement('a');
+        const projectIconAndTextDiv = document.createElement('div');
+        const projectIcon = document.createElement('i');
+        const projectText = document.createElement('p');
+        const projectIconsDiv = document.createElement('div');
+        const projectEditIcon = document.createElement('i');
+        const projectTrashIcon = document.createElement('i');
+  
+        // Project icon/text and default icons divs 
+        projectIconAndTextDiv.classList.add(
+          'project-icon-and-text-div',
+          'project',
+          'select'
+        );
+        projectIconAndTextDiv.setAttribute('data-link-index', i);
+        projectIconsDiv.classList.add(
+          'project-default-icons-div',
+          'project',
+          'select'
+        );
+        projectIconsDiv.setAttribute('data-link-index', i);
+  
+        // Project link
+        projectLink.classList.add('link', 'project-link', 'project', 'select');
+        projectLink.setAttribute('href', '#');
+        projectLink.setAttribute('data-link-index', i);
+  
+        // Project icon 
+        projectIcon.classList.add(
+          'fal',
+          'fa-fw',
+          'project-icon',
+          'project',
+          'select',
+          'padding-right',
+          projects.projectsList[i].icon
+        );
+        projectIcon.setAttribute('data-link-index', i);
+  
+        // Project text 
+        projectText.classList.add('project-text', 'project', 'select');
+        projectText.textContent = projects.projectsList[i].title;
+        projectText.setAttribute('data-link-index', i);
+  
+        // Project default icons 
+        projectEditIcon.classList.add(
+          'fal',
+          'fa-edit',
+          'project',
+          'project-icon',
+          'edit-project',
+          'select',
+          'scale-element',
+          'padding-right'
+        );
+        projectEditIcon.setAttribute('data-link-index', i);
+  
+        projectTrashIcon.classList.add(
+          'fal',
+          'fa-trash-alt',
+          'project',
+          'project-icon',
+          'delete-project',
+          'select',
+          'scale-element'
+        );
+        projectTrashIcon.setAttribute('data-link-index', i);
+  
+        // Appends
+        projectIconsDiv.appendChild(projectEditIcon);
+        projectIconsDiv.appendChild(projectTrashIcon);
+        projectIconAndTextDiv.appendChild(projectIcon);
+        projectIconAndTextDiv.appendChild(projectText);
+        projectLink.appendChild(projectIconAndTextDiv);
+        projectLink.appendChild(projectIconsDiv);
+        projectsLinksDiv.appendChild(projectLink);
+      }
+      manipulateModal('close');
+    }
+
+
       return {
         responsiveMenu,
         toggleMenu,
@@ -508,6 +716,8 @@ export const dom = (() => {
         showTasks,
         getTasks,
         selectLink,
+        validateModal,
+        showProjects,
       };
 
 })();

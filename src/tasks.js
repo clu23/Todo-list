@@ -1,5 +1,5 @@
 import projects from './projects';
-import dom from './dom-manip';
+import {dom} from './dom-manip';
 
 export const tasks = (()=>{
 
