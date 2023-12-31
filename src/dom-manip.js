@@ -655,7 +655,7 @@ export const dom = (() => {
   
         // Project icon 
         projectIcon.classList.add(
-          'fal',
+          'fa-solid',
           'fa-fw',
           'project-icon',
           'project',
