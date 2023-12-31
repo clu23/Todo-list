@@ -70,7 +70,7 @@ export const dom = (() => {
       const menuTexts = document.querySelectorAll('.menu-link-text');
 
       mainTitleIcon.classList.add(
-        'fal',
+        'fa-solid',
         'fa-fw',
         'main-title-icon',
         'padding-right',
@@ -105,7 +105,7 @@ export const dom = (() => {
         const projectIcon = projects.projectsList[index].icon;
   
         mainTitleIcon.classList.add(
-          'fal',
+          'fa-solid',
           'fa-fw',
           'main-title-icon',
           'padding-right',
