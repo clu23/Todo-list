@@ -8,12 +8,12 @@ const projects = (() => {
     projectsList = [
       {
         icon: 'fa-screwdriver-wrench',
-        title: 'Default Project',
-        description:'An important project',
+        title: 'House Cleaning',
+        description:'Project related to house cleaning tasks',
         tasks: [
           {
-            title: 'Enjoy my tea as much as my coding! ',
-            description: 'Longer description of my demo task, just to show you this surprisingly nice scrollbar and amazingly cute kitty ฅ(^◉ᴥ◉^)ฅ',
+            title: 'Clean the kitchen ',
+            description: 'Clean all surfaces and cooking utensils',
             date: '2023-30-12',
             priority: 'low',
             projectIndex: 0,

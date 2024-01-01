@@ -347,7 +347,8 @@ export const dom = (() => {
           // Task Edit icon
           taskEditIcon.classList.add(
             'fal',
-            'fa-edit',
+            'fa-regular',
+            'fa-pen-to-square',
             'edit-task',
             'task-icon',
             'scale-element',
@@ -673,7 +674,8 @@ export const dom = (() => {
         // Project default icons 
         projectEditIcon.classList.add(
           'fal',
-          'fa-edit',
+          'fa-regular',
+          'fa-pen-to-square',
           'project',
           'project-icon',
           'edit-project',
