@@ -360,7 +360,8 @@ export const dom = (() => {
           // Task Delete icon
           taskTrashIcon.classList.add(
             'fal',
-            'fa-trash-alt',
+            'fa-solid', 
+            'fa-trash-can',
             'delete-task',
             'task-icon',
             'scale-element',
@@ -687,7 +688,8 @@ export const dom = (() => {
   
         projectTrashIcon.classList.add(
           'fal',
-          'fa-trash-alt',
+          'fa-solid', 
+          'fa-trash-can',
           'project',
           'project-icon',
           'delete-project',
