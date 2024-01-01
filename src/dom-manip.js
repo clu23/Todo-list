@@ -375,7 +375,8 @@ export const dom = (() => {
             'fal',
             'task-icon',
             'scale-element',
-            'fa-info-circle'
+            'fa-solid', 
+            'fa-circle-info'
           );
           taskInfoIcon.setAttribute('data-project-index', i);
           taskInfoIcon.setAttribute('data-task-index', j);
@@ -396,6 +397,7 @@ export const dom = (() => {
             taskText.classList.remove('task-done-text');
             taskIcon.classList.add(
               'fal',
+              'fa-regular',
               'fa-circle',
               'padding-right'
             );
@@ -403,6 +405,7 @@ export const dom = (() => {
             taskText.classList.add('task-done-text');
             taskIcon.classList.add(
               'fal',
+              'fa-regular',
               'fa-check-circle',
               'padding-right'
             );

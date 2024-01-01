@@ -47,7 +47,7 @@ const handlers = (() => {
           if (target.classList.contains('edit-project')) {
           dom.manipulateModal('show', 'Edit Project', 'Edit', projectIndex);
   
-            // Modal for deleting projectS
+            // Modal for deleting projects
           } else if (target.classList.contains('delete-project')) {
             dom.manipulateModal('show', 'Delete Project', 'Delete', projectIndex);
           }
@@ -71,7 +71,7 @@ const handlers = (() => {
             dom.manipulateModal('show', 'Delete Task', 'Delete', projectIndex, taskIndex);
   
             // Modal for watching task info 
-          } else if (target.classList.contains('fa-info-circle')) {
+          } else if (target.classList.contains('fa-circle-info')) {
             dom.manipulateModal('show', 'Task Info', '', projectIndex, taskIndex);
           }
         }

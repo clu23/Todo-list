@@ -24,12 +24,12 @@ const projects = (() => {
       },
       {
         icon: 'fa-screwdriver-wrench',
-        title: 'Craft Another Project',
-        description:'Another important project',
+        title: 'Job Seeking',
+        description:'Project related to job seeking',
         tasks: [
           {
-            title: 'Create magic through my mind, my heart and my keyboard...',
-            description: 'Another longer description of my demo task, just to show you this surprisingly nice scrollbar and cute little birdie ϵ( ‘Θ’ )϶♪♫',
+            title: 'Apply for a software engineer position',
+            description: 'Write a CV and cover letter in order to apply to a software engineer position',
             date: '2024-02-12',
             priority: 'high',
             projectIndex: 1,
