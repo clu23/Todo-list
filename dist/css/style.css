@@ -488,7 +488,7 @@ select:focus {
 
 /* MODAL TO DELETE A PROJECT */
 .deletion-modal-header {
-  background: linear-gradient(90deg, var(--dark-red) 0%, var(--red) 100%);
+  background: var(--dark-red);
 }
 .project-deletion-title,
 .task-deletion-title {

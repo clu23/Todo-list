@@ -23,7 +23,7 @@ const projects = (() => {
         ]
       },
       {
-        icon: 'fa-screwdriver-wrench',
+        icon: 'fa-pencil',
         title: 'Job Seeking',
         description:'Project related to job seeking',
         tasks: [
